@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offer Clime - Premium Deals</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-light: #8A85FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --dark: #1A1A2E;
+            --darker: #0F0F1B;
+            --light: #F5F5F7;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(26, 26, 46, 0.8);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 8px 20px;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .search-bar:focus-within {
+            box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+            border-color: var(--primary);
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--light);
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar i {
+            color: var(--primary-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 40px 0 80px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease;
+            box-shadow: var(--shadow);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .affiliate-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .affiliate-btn:hover {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .no-products {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 60px 20px;
+            background: var(--glass);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .no-products i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-light);
+        }
+
+        /* Social Media Section */
+        .social-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 15, 27, 0.9);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .admin-link {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .admin-link:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-bolt"></i>
+                    Offer Clime
+                </a>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Discover Amazing Deals</h1>
+            <p>Find the best affiliate products curated just for you. Premium quality, unbeatable prices.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+                <div class="no-products">
+                    <i class="fas fa-box-open"></i>
+                    <h3>No Products Available</h3>
+                    <p>Products will appear here once the admin adds them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">Connect With Us</h2>
+            <div class="social-links" id="socialLinks">
+                <!-- Social links will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2023 Offer Clime. All rights reserved.</p>
+                <a href="admin.html" class="admin-link">Admin Dashboard</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    
+    <script>
+ const firebaseConfig = {
+  apiKey: "AIzaSyB3gO6ZObt-viTFUZlJz28sKYqEysE1sJg",
+  authDomain: "my-first-success-d870e.firebaseapp.com",
+  databaseURL: "https://my-first-success-d870e-default-rtdb.firebaseio.com",
+  projectId: "my-first-success-d870e",
+  storageBucket: "my-first-success-d870e.firebasestorage.app",
+  messagingSenderId: "83527741536",
+  appId: "1:83527741536:web:595dee3678bbd6fc831305",
+  measurementId: "G-3WJV9NT74P"
+};
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const socialLinks = document.getElementById('socialLinks');
+        const searchInput = document.getElementById('searchInput');
+
+        // Load products from Firestore
+        function loadProducts(searchTerm = '') {
+            let query = db.collection('products');
+            
+            // If there's a search term, filter products
+            if (searchTerm) {
+                query = query.where('title', '>=', searchTerm)
+                            .where('title', '<=', searchTerm + '\uf8ff');
+            }
+            
+            query.onSnapshot(snapshot => {
+                productsGrid.innerHTML = '';
+                
+                if (snapshot.empty) {
+                    productsGrid.innerHTML = `
+                        <div class="no-products">
+                            <i class="fas fa-box-open"></i>
+                            <h3>No Products Found</h3>
+                            <p>Try a different search term or check back later.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                snapshot.forEach(doc => {
+                    const product = doc.data();
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        <img src="${product.imageURL}" alt="${product.title}" class="product-image" onerror="this.src='https://via.placeholder.com/300x200?text=Product+Image'">
+                        <div class="product-info">
+                            <h3 class="product-title">${product.title}</h3>
+                            <p class="product-price">$${product.price}</p>
+                            ${product.description ? `<p class="product-description">${product.description}</p>` : ''}
+                            <a href="${product.affiliateLink}" target="_blank" class="affiliate-btn">
+                                Get Deal <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    `;
+                    productsGrid.appendChild(productCard);
+                });
+            });
+        }
+
+        // Load social links from Firestore
+        function loadSocialLinks() {
+            db.collection('socialLinks').onSnapshot(snapshot => {
+                socialLinks.innerHTML = '';
+                
+                if (snapshot.empty) {
+                    socialLinks.innerHTML = `
+                        <p>Social links will appear here once the admin adds them.</p>
+                    `;
+                    return;
+                }
+                
+                snapshot.forEach(doc => {
+                    const social = doc.data();
+                    const socialLink = document.createElement('a');
+                    socialLink.href = social.url;
+                    socialLink.target = '_blank';
+                    socialLink.className = 'social-link';
+                    
+                    // Set appropriate icon based on platform
+                    let iconClass = 'fas fa-globe'; // default
+                    if (social.platform.toLowerCase().includes('facebook')) iconClass = 'fab fa-facebook-f';
+                    else if (social.platform.toLowerCase().includes('instagram')) iconClass = 'fab fa-instagram';
+                    else if (social.platform.toLowerCase().includes('tiktok')) iconClass = 'fab fa-tiktok';
+                    else if (social.platform.toLowerCase().includes('youtube')) iconClass = 'fab fa-youtube';
+                    else if (social.platform.toLowerCase().includes('whatsapp')) iconClass = 'fab fa-whatsapp';
+                    
+                    socialLink.innerHTML = `<i class="${iconClass}"></i>`;
+                    socialLinks.appendChild(socialLink);
+                });
+            });
+        }
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            loadProducts(e.target.value);
+        });
+
+        // Initial load
+        loadProducts();
+        loadSocialLinks();
+    </script>
+</body>
+</html>
